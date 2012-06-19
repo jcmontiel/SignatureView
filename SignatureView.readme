@@ -4,6 +4,7 @@
 //
 // self.signatureViewController will be instantiated in your viewDidLoad
 //
+//NOTE: You must add the OpenGLES.framework and QuartzCore.framework to the project
 
 - (void)viewDidLoad
 {
