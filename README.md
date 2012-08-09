@@ -19,7 +19,7 @@ self.signature is a UIView reference to an IBOutlet (from xib), that is the plac
 
 self.signatureViewController will be instantiated in your viewDidLoad
   
-- (void)viewDidLoad
+(void)viewDidLoad
 {
 	[super viewDidLoad];
   
@@ -33,10 +33,9 @@ self.signatureViewController will be instantiated in your viewDidLoad
 	[self.signatureView removeFromSuperview];
 	self.signatureView = self.signatureController.view;
 }
-  
-#pragma mark SignatureViewController delegate method
-  
-- (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
+
+
+(void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
 {
 	NSData *thisSignature = signature;
 	// 
