@@ -18,8 +18,8 @@ Here is an example of how to implement the SignatureViewController and it's sign
 self.signature is a UIView reference to an IBOutlet (from xib), that is the placeholder for the signature view to be placed into
 
 self.signatureViewController will be instantiated in your viewDidLoad
-  
-(void)viewDidLoad
+{  
+- (void)viewDidLoad
 {
 	[super viewDidLoad];
   
@@ -35,14 +35,14 @@ self.signatureViewController will be instantiated in your viewDidLoad
 }
 
 
-(void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
+- (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
 {
 	NSData *thisSignature = signature;
 	// 
 	// Do something with thisSignature, like save it to a file or a database as binary data.
 	//
 }
-
+}
 
 LICENSE
 -------
