@@ -1,7 +1,7 @@
 README
 ======
 
-This is a simple iOS signature view and controller to capture a PNG image from a finger drawn signature. It is based on one of Apple Inc's example code.
+This is a simple iOS signature view and controller to capture a PNG image from a finger drawn signature. It is based on Apple Inc's example code.
 
 HOW TO USE IT
 -------------
@@ -13,11 +13,11 @@ You must add the OpenGLES.framework and QuartzCore.framework to the Xcode projec
 EXAMPLE
 -------
 
-Here is an example of how to implement the SignatureViewController and it's signature view into your own viewControllers
+Here is an example of how to implement the SignatureViewController and it's signature view into your own viewControllers.
 
-self.signature is a UIView reference to an IBOutlet (from xib), that is the placeholder for the signature view to be placed into
+self.signature is a UIView reference to an IBOutlet (from xib), that is the placeholder for the signature view
 
-self.signatureViewController will be instantiated in your viewDidLoad
+self.signatureViewController will be instantiated in your viewDidLoad to control the signatureView, then the signatureViewController.view replaces the self.signature view and is put under control of your viewController.
 
 	//
 	- (void)viewDidLoad
