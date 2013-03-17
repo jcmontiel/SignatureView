@@ -6,9 +6,9 @@ This is a simple iOS signature view and controller to capture a PNG image from a
 HOW TO USE IT
 -------------
 
-This repository has two branches; master and SampleProject. The master branch is intended to be used as a git submodule in your project and only contains the necessary components. The SampleProject branch is, simply put, a sample implementation and should not be used as a git submodule, but cloned as a standalone project.
-
 You must add the OpenGLES.framework and QuartzCore.framework to the Xcode project.
+
+Look at https://github.com/jcmontiel/SignatureViewExample.git for an example of how to implement.
 
 EXAMPLE
 -------

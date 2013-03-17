@@ -451,8 +451,6 @@
     CGImageRelease(imageRef);
     CGColorSpaceRelease(colorSpaceRef);
     CGDataProviderRelease(provider);
-    free(buffer);
-    free(buffer2);
     return myImage;
 }
 

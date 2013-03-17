@@ -64,11 +64,8 @@
 
 - (IBAction)signatureSignTapped:(id)sender 
 {
-    UIImage *signatureImage = [self.signatureView getSignatureImage];
-    if (signatureImage)
+    if ((self.signature = UIImagePNGRepresentation([self.signatureView getSignatureImage])))
     {
-        self.signature = [[NSData alloc] initWithData:UIImagePNGRepresentation(signatureImage)];
-        
         [self.delegate signatureViewController:self didSign:self.signature];
     }
     else 
