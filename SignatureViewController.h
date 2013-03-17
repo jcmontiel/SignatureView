@@ -16,6 +16,6 @@
 
 @interface SignatureViewController : UIViewController
 
-@property (assign, nonatomic) id<SignatureViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<SignatureViewControllerDelegate> delegate;
 
 @end

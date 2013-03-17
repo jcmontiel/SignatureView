@@ -7,9 +7,9 @@
 #import "SignatureViewController.h"
 
 @interface SignatureViewController ()
-@property (retain, nonatomic) IBOutlet SignatureView *signatureView;
-@property (retain, nonatomic) IBOutlet UITextField *signatureTextField;
-@property (retain, nonatomic) NSData *signature;
+@property (strong, nonatomic) IBOutlet SignatureView *signatureView;
+@property (strong, nonatomic) IBOutlet UITextField *signatureTextField;
+@property (strong, nonatomic) NSData *signature;
 - (IBAction)signatureClearTapped:(id)sender;
 - (IBAction)signatureSignTapped:(id)sender;
 
@@ -21,20 +21,13 @@
 @synthesize signatureView;
 @synthesize signature;
 
-- (void)dealloc 
-{
-    [signatureView release];
-    [signatureTextField release];
-    [signature release];
-    [super dealloc];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
-        self.signatureView = [[[SignatureView alloc] init] autorelease];
+        self.signatureView = [[SignatureView alloc] init];
     }
     return self;
 }
@@ -74,7 +67,7 @@
     UIImage *signatureImage = [self.signatureView getSignatureImage];
     if (signatureImage)
     {
-        self.signature = [[[NSData alloc] initWithData:UIImagePNGRepresentation(signatureImage)] autorelease];
+        self.signature = [[NSData alloc] initWithData:UIImagePNGRepresentation(signatureImage)];
         
         [self.delegate signatureViewController:self didSign:self.signature];
     }
@@ -82,7 +75,6 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signature" message:@"Please sign" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [alert release];
     }
 }
 

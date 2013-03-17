@@ -126,8 +126,6 @@
 		[EAGLContext setCurrentContext:nil];
 	}
 	
-	[context release];
-	[super dealloc];
 }
 
 
@@ -152,7 +150,6 @@
 		
 		if (!context || ![EAGLContext setCurrentContext:context]) 
         {
-			[self release];
 			return nil;
 		}
 		
@@ -448,7 +445,7 @@
     CGImageRef imageRef = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
     
     // then make the uiimage from that
-    UIImage *myImage = [[[UIImage alloc] initWithCGImage:imageRef] autorelease];
+    UIImage *myImage = [[UIImage alloc] initWithCGImage:imageRef];
     
     // release memory
     CGImageRelease(imageRef);
