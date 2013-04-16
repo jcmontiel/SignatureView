@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) id<SignatureViewControllerDelegate> delegate;
 
+-(void)checkSign;
+
 @end

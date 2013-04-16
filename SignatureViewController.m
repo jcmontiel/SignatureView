@@ -64,11 +64,16 @@
 
 - (IBAction)signatureSignTapped:(id)sender 
 {
+    [self checkSign];
+}
+
+-(void)checkSign
+{
     if ((self.signature = UIImagePNGRepresentation([self.signatureView getSignatureImage])))
     {
         [self.delegate signatureViewController:self didSign:self.signature];
     }
-    else 
+    else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signature" message:@"Please sign" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
