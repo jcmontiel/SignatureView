@@ -70,10 +70,13 @@
 
 - (void)beganSignature:(NSNotification *)notification
 {
-    [UIView animateWithDuration:0.6 animations:^
-     {
-         [self.signatureTextField setAlpha:0.2];
-     }];
+    if ([notification object] == self.view)
+    {
+        [UIView animateWithDuration:0.6 animations:^
+         {
+             [self.signatureTextField setAlpha:0.2];
+         }];
+    }
 }
 
 

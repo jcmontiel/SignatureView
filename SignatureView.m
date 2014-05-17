@@ -90,9 +90,10 @@
 	Boolean	firstTouch;
 	Boolean needsErase;
 }
-
-@property(nonatomic, readwrite) CGPoint location;
-@property(nonatomic, readwrite) CGPoint previousLocation;
+@property (nonatomic, readwrite) BOOL drawnSignature;
+@property (nonatomic, readwrite) CGPoint location;
+@property (nonatomic, readwrite) CGPoint previousLocation;
+@property (nonatomic, strong) UIImage *image;
 
 - (BOOL)createFramebuffer;
 - (void)destroyFramebuffer;
@@ -101,7 +102,6 @@
 
 
 @implementation SignatureView
-@synthesize  drawnSignature;
 @synthesize  location;
 @synthesize  previousLocation;
 
@@ -212,7 +212,7 @@
 		
 		// Make sure to start with a cleared buffer
 		needsErase = YES;
-        drawnSignature = NO;
+        self.drawnSignature = NO;
     }
     return self;
 }
@@ -337,7 +337,7 @@
 	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
 	location = [touch locationInView:self];
 	location.y = bounds.size.height - location.y;
-    drawnSignature = YES;
+    self.drawnSignature = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:kBeganSignature object:self];
 }
 
@@ -379,6 +379,7 @@
 		previousLocation.y = bounds.size.height - previousLocation.y;
 		[self renderLineFromPoint:previousLocation toPoint:location];
 	}
+    self.image = [self saveImage];
 }
 
 // Erases the screen
@@ -394,7 +395,7 @@
 	// Display the buffer
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
-    drawnSignature = NO;
+    self.drawnSignature = NO;
 }
 
 
@@ -409,7 +410,12 @@
 
 - (UIImage *) getSignatureImage
 {
-    if (!drawnSignature)
+    return self.image;
+}
+
+- (UIImage *) saveImage
+{
+    if (!self.drawnSignature)
         return nil;
     
     CGFloat width = self.frame.size.width;
