@@ -7,10 +7,7 @@
 #import "SignatureViewController.h"
 
 @interface SignatureViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *signatureTextField;
 @property (strong, nonatomic) NSData *signature;
-- (IBAction)signatureClearTapped:(id)sender;
-- (IBAction)signatureSignTapped:(id)sender;
 
 @end
 

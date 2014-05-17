@@ -361,10 +361,9 @@
 	    location.y = bounds.size.height - location.y;
 		previousLocation = [touch previousLocationInView:self];
 		previousLocation.y = bounds.size.height - previousLocation.y;
+        // Render the stroke
+        [self renderLineFromPoint:previousLocation toPoint:location];
 	}
-    
-	// Render the stroke
-	[self renderLineFromPoint:previousLocation toPoint:location];
 }
 
 // Handles the end of a touch event
@@ -396,6 +395,7 @@
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
     self.drawnSignature = NO;
+    self.image = nil;
 }
 
 

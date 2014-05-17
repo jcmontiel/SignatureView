@@ -16,10 +16,12 @@
 
 @interface SignatureViewController : UIViewController
 @property (strong, nonatomic) IBOutlet SignatureView *view;
-@property (weak, nonatomic) IBOutlet UIButton *clearButton;
-@property (weak, nonatomic) IBOutlet UIButton *signButton;
+@property (strong, nonatomic) IBOutlet UITextField *signatureTextField;
+@property (strong, nonatomic) IBOutlet UIButton *clearButton;
+@property (strong, nonatomic) IBOutlet UIButton *signButton;
 @property (weak, nonatomic) IBOutlet id<SignatureViewControllerDelegate> delegate;
-
--(void)checkSign;
+- (IBAction)signatureClearTapped:(id)sender;
+- (IBAction)signatureSignTapped:(id)sender;
+- (void)checkSign;
 
 @end
