@@ -223,6 +223,7 @@
 // the same size as our display area.
 -(void)layoutSubviews
 {
+    [super layoutSubviews];
 	[EAGLContext setCurrentContext:context];
 	[self destroyFramebuffer];
 	[self createFramebuffer];

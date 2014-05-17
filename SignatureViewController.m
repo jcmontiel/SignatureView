@@ -7,7 +7,6 @@
 #import "SignatureViewController.h"
 
 @interface SignatureViewController ()
-@property (strong, nonatomic) IBOutlet SignatureView *signatureView;
 @property (strong, nonatomic) IBOutlet UITextField *signatureTextField;
 @property (strong, nonatomic) NSData *signature;
 - (IBAction)signatureClearTapped:(id)sender;
@@ -18,30 +17,19 @@
 @implementation SignatureViewController
 @synthesize delegate;
 @synthesize signatureTextField;
-@synthesize signatureView;
+@synthesize view;
 @synthesize signature;
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) 
-    {
-        self.signatureView = [[SignatureView alloc] init];
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beganSignature:) name:kBeganSignature object:self.signatureView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beganSignature:) name:kBeganSignature object:self.view];
 }
 
 - (void)viewDidUnload
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kBeganSignature object:self.signatureView];
-    [self setSignatureView:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kBeganSignature object:self.view];
+    [self setView:nil];
     [self setSignatureTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -54,7 +42,7 @@
 
 - (IBAction)signatureClearTapped:(id)sender 
 {
-    [self.signatureView erase];
+    [self.view erase];
     
     [UIView animateWithDuration:0.6 animations:^
      {
@@ -69,7 +57,7 @@
 
 -(void)checkSign
 {
-    if ((self.signature = UIImagePNGRepresentation([self.signatureView getSignatureImage])))
+    if ((self.signature = UIImagePNGRepresentation([self.view getSignatureImage])))
     {
         [self.delegate signatureViewController:self didSign:self.signature];
     }
