@@ -15,24 +15,20 @@ EXAMPLE
 
 Here is an example of how to implement the SignatureViewController and it's signature view into your own viewControllers.
 
-self.signature is a UIView reference to an IBOutlet (from xib), that is the placeholder for the signature view
-
-self.signatureViewController will be instantiated in your viewDidLoad to control the signatureView, then the signatureViewController.view replaces the self.signature view and is put under control of your viewController.
-
 	//
 	- (void)viewDidLoad
 	{
 		[super viewDidLoad];
   
-		self.signatureController = [[[SignatureViewController alloc] initWithNibName:@"SignatureView" bundle:nil] autorelease];
-		self.signatureController.delegate = self;
-  
-		self.signatureController.view.frame = self.signatureView.frame;
-		[self.view insertSubview:self.signatureController.view belowSubview:self.signatureView];
-		[self.signatureView removeFromSuperview];
-		self.signatureView = self.signatureController.view;
+        [self.signatureController viewDidLoad];
 	}
 
+    - (void)viewDidUnload
+	{
+		[super viewDidUnload];
+  
+        [self.signatureController viewDidUnload];
+	}
 
 	- (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
 	{
