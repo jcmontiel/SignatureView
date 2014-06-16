@@ -54,15 +54,16 @@
 {
     [super viewDidLoad];
 
-    self.signatureController = [[[SignatureViewController alloc] initWithNibName:@"SignatureView" bundle:nil] autorelease];
-    self.signatureController.delegate = self;
-
-    self.signatureController.view.frame = self.signatureView.frame;
-    [self.view insertSubview:self.signatureController.view belowSubview:self.signatureView];
-    [self.signatureView removeFromSuperview];
-    self.signatureView = self.signatureController.view;
+    [self.signatureController viewDidLoad];
 }
 
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+
+    [self.signatureController viewDidUnload];
+}
 
 - (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
 {
