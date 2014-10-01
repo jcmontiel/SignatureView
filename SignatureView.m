@@ -125,7 +125,6 @@
 	{
 		[EAGLContext setCurrentContext:nil];
 	}
-	
 }
 
 
@@ -224,14 +223,15 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-	[EAGLContext setCurrentContext:context];
-	[self destroyFramebuffer];
-	[self createFramebuffer];
 	
 	// Clear the framebuffer the first time it is allocated
 	if (needsErase) 
     {
-		[self erase];
+        [EAGLContext setCurrentContext:context];
+        [self destroyFramebuffer];
+        [self createFramebuffer];
+
+        [self erase];
 		needsErase = NO;
 	}
 }
