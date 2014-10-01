@@ -24,6 +24,13 @@
     [self signatureClearTapped:nil];
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beganSignature:) name:kBeganSignature object:self.view];
+    [self signatureClearTapped:nil];
+}
+
 - (void)viewDidUnload
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kBeganSignature object:self.view];
