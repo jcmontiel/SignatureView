@@ -53,25 +53,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.signatureController)
+        [self addChildViewController:self.signatureController];
 
-    [self.signatureController viewDidLoad];
+    if (self.signatureController2)
+        [self addChildViewController:self.signatureController2];
 }
 
-
-- (void)viewDidUnload
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [super viewDidUnload];
-
-    [self.signatureController viewDidUnload];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) 
+    {
+        return (interfaceOrientation != UIInterfaceOrientationPortrait);
+    }
+    else 
+    {
+        return YES;
+    }
 }
 
-- (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
+- (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signatureData;
 {
-    NSData *thisSignature = signature;
-    // 
-    // Do something with thisSignature, like save it to a file or a database as binary data.
-    //
+    NSLog(@"signatureData: %@",signatureData.description);
 }
+
 </code></pre>
 
 <h2>LICENSE</h2>
