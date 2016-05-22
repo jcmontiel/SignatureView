@@ -16,8 +16,7 @@ EXAMPLE
 Here is an example of how to implement the SignatureViewController and it's signature view into your own viewControllers.
 
     //
-    - (void)viewDidLoad
-    {
+    - (void)viewDidLoad {
         [super viewDidLoad];
         if (self.signatureController)
             [self addChildViewController:self.signatureController];
@@ -28,25 +27,28 @@ Here is an example of how to implement the SignatureViewController and it's sign
 
     - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
     {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) 
-        {
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)  {
             return (interfaceOrientation != UIInterfaceOrientationPortrait);
         }
-        else 
-        {
+        else {
             return YES;
         }
     }
 
-    - (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signatureData;
-    {
-        NSLog(@"signatureData: %@",signatureData.description);
+    - (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signatureData {
+    
+        NSLog(@"handle signature in signatureData: %@",signatureData.description);
+    }
+
+    - (void) didNotSignatureViewController:(SignatureViewController *)viewController {
+    
+        NSLog(@"handle tapping sign with no signature");
     }
 
 LICENSE
 -------
 
-Copyright (C) 2012 by Em Sevn, LLC
+Copyright (C) 2012-2016 by Montiel Mobile, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
