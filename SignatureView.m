@@ -133,7 +133,8 @@
 	CGImageRef		brushImage;
 	CGContextRef	brushContext;
 	GLubyte			*brushData;
-	size_t			width, height;
+    NSInteger		width;
+    NSInteger       height;
 
     self = [super initWithCoder:aDecoder];
     if (self) 
@@ -181,7 +182,7 @@
 			// Set the texture parameters to use a minifying filter and a linear filer (weighted average)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			// Specify a 2D texture image, providing the a pointer to the image data in memory
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int)width, (int)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
 			// Release  the image data; it's no longer needed
             free(brushData);
 		}
@@ -286,7 +287,7 @@
 {
 	static GLfloat*		vertexBuffer = NULL;
 	static NSUInteger	vertexMax = 64;
-	NSUInteger			vertexCount = 0,
+	int                 vertexCount = 0,
     count,
     i;
 	
