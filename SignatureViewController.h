@@ -11,6 +11,7 @@
 
 @protocol SignatureViewControllerDelegate <NSObject>
 - (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signature;
+- (void) didNotSignInSignatureViewController:(SignatureViewController *)viewController;
 @end
 
 

@@ -12,10 +12,7 @@
 @end
 
 @implementation SignatureViewController
-@synthesize delegate;
-@synthesize signatureTextField;
-@synthesize view;
-@synthesize signature;
+@dynamic view;
 
 - (void)viewDidLoad
 {
@@ -62,14 +59,13 @@
 
 -(void)checkSign
 {
-    if ((self.signature = UIImagePNGRepresentation([self.view getSignatureImage])))
-    {
-        [self.delegate signatureViewController:self didSign:self.signature];
+    if ((self.signature = UIImagePNGRepresentation([self.view getSignatureImage]))) {
+        
+        [_delegate signatureViewController:self didSign:self.signature];
     }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signature" message:@"Please sign" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+    else {
+        
+        [_delegate didNotSignInSignatureViewController:self];
     }
 }
 
@@ -79,7 +75,7 @@
     {
         [UIView animateWithDuration:0.6 animations:^
          {
-             [self.signatureTextField setAlpha:0.2];
+             [_signatureTextField setAlpha:0.2];
          }];
     }
 }
