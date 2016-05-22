@@ -25,16 +25,6 @@ Here is an example of how to implement the SignatureViewController and it's sign
             [self addChildViewController:self.signatureController2];
     }
 
-    - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-    {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)  {
-            return (interfaceOrientation != UIInterfaceOrientationPortrait);
-        }
-        else {
-            return YES;
-        }
-    }
-
     - (void) signatureViewController:(SignatureViewController *)viewController didSign:(NSData *)signatureData {
     
         NSLog(@"handle signature in signatureData: %@",signatureData.description);
